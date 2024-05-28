@@ -21,6 +21,7 @@
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Design" Version="8.0.5" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Relational" Version="8.0.5" />
     <PackageVersion Include="Microsoft.EntityFrameworkCore.Tools" Version="8.0.5" />
+	<PackageVersion Include="Microsoft.Extensions.DependencyInjection.Abstractions" Version="8.0.1" />
     <PackageVersion Include="Microsoft.VisualStudio.Threading.Analyzers" Version="17.3.44" />
     <PackageVersion Include="MinimalApis.FluentValidation" Version="1.0.0" />
     <PackageVersion Include="MinVer" Version="4.2.0" />
