@@ -3,6 +3,7 @@ namespace Wanted.Persistence.Repositories;
 using AutoMapper;
 using Domain.AggregateRoots;
 using ErrorOr;
+using Extensions;
 using Services;
 
 public class WriteEmployeeRepository(DatabaseContext context, IMapper mapper)
@@ -16,7 +17,7 @@ public class WriteEmployeeRepository(DatabaseContext context, IMapper mapper)
             return Error.Failure(description: "Database is not accessible");
         }
         context.Employees.Add(dbEntity);
-        var isSuccess = await context.SaveChangesAsync(cancellationToken) > 0;
-        return isSuccess ? entity.Id : Error.Failure("employee is not saved");
+        var result = await context.SaveChangesAsyncExt(cancellationToken);
+        return result.IsError ? ErrorOr<Guid>.From(result.Errors) : entity.Id;
     }
 }

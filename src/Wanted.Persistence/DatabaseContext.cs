@@ -1,6 +1,7 @@
 ﻿namespace Wanted.Persistence;
 
 using Entities;
+using EntityFramework.Exceptions.PostgreSQL;
 using Microsoft.EntityFrameworkCore;
 
 public sealed class DatabaseContext(DbContextOptions options) : DbContext(options), IAppContext
@@ -24,4 +25,7 @@ public sealed class DatabaseContext(DbContextOptions options) : DbContext(option
                 r => r.HasOne<Company>().WithMany().HasForeignKey(e => e.CompanyId)
             );
     }
+
+    protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder) =>
+        optionsBuilder.UseExceptionProcessor();
 }

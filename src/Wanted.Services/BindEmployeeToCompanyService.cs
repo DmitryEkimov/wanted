@@ -16,12 +16,25 @@ public sealed class BindEmployeeToCompanyService(
     )
     {
         List<Error> errors = [];
-        if (!await companyRepository.Exists(relation.CompanyId, cancellationToken))
+        var isCompanyExists = await companyRepository.Exists(relation.CompanyId, cancellationToken);
+        if (isCompanyExists.IsError)
+        {
+            errors.AddRange(isCompanyExists.Errors);
+        }
+        if (!isCompanyExists.Value)
         {
             errors.Add(Error.NotFound(description: "Company with this id does not exist"));
         }
 
-        if (!await employeeRepository.Exists(relation.EmployeeId, cancellationToken))
+        var isEmployeeExists = await employeeRepository.Exists(
+            relation.EmployeeId,
+            cancellationToken
+        );
+        if (isEmployeeExists.IsError)
+        {
+            errors.AddRange(isEmployeeExists.Errors);
+        }
+        if (!isCompanyExists.Value)
         {
             errors.Add(Error.NotFound(description: "Employee with this id does not exist"));
         }

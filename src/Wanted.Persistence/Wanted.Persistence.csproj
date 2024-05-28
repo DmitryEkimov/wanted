@@ -8,6 +8,7 @@
 
     <ItemGroup>
       <PackageReference Include="AutoMapper" />
+      <PackageReference Include="EntityFrameworkCore.Exceptions.PostgreSQL" />
       <PackageReference Include="Microsoft.EntityFrameworkCore" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Analyzers" />
       <PackageReference Include="Microsoft.EntityFrameworkCore.Relational" />

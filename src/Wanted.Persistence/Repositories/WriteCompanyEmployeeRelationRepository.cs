@@ -2,6 +2,7 @@ namespace Wanted.Persistence.Repositories;
 
 using AutoMapper;
 using ErrorOr;
+using Extensions;
 using Services;
 
 public class WriteCompanyEmployeeRelationRepository(DatabaseContext context, IMapper mapper)
@@ -18,7 +19,6 @@ public class WriteCompanyEmployeeRelationRepository(DatabaseContext context, IMa
             return Error.Failure(description: "Database is not accessible");
         }
         context.CompanyEmployees.Add(dbEntity);
-        var isSuccess = await context.SaveChangesAsync(cancellationToken) > 0;
-        return isSuccess ? Result.Success : Error.Failure("relation is not saved");
+        return await context.SaveChangesAsyncExt(cancellationToken);
     }
 }

@@ -7,6 +7,7 @@ using Serilog;
 using Wanted.Bus;
 using Wanted.Commands.AddEmployee;
 using Wanted.Persistence;
+using Wanted.Persistence.Extensions;
 using Wanted.Services;
 using Wanted.WebApi.Companies.Consumers;
 using Wanted.WebApi.Companies.Features.Company;
